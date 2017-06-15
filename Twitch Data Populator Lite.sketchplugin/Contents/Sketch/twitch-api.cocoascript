@@ -1,0 +1,166 @@
+//===============================================
+// twinge sketch data populator - api
+//===============================================
+
+var TwitchApi = {};
+(function(self) {
+
+  self.getTwitchJSON = getTwitchJSON;
+
+  var clientID = '8crenbj7utcu9t87mzhzvgw1jgrotn';
+
+  var api = {
+    base: 'https://api.twitch.tv/kraken/',
+    categories: ['channels', 'chat', 'games', 'search', 'streams', 'teams', 'videos'],
+    sections: function() {
+      var apiSelf = this;
+      var sections = {};
+      for (var i = 0; i < apiSelf.categories.length; i++) {
+        sections[apiSelf.categories[i]] = apiSelf.base + apiSelf.categories[i];
+      }
+      return sections;
+    }
+  }
+
+  var urlBuilder = {
+    sections: api.sections(),
+    clientID: clientID,
+    build: function(section, subsections, params) {
+      var urlBuilderSelf = this;
+      var url = urlBuilderSelf.sections[section];
+      if (subsections) {
+        url = url + '/';
+        for (var i = 0; i < subsections.length; i++) {
+          i < subsections.length - 1 ? url = url + subsections[i] + '/' : url = url + subsections[i];
+        }
+        url = url + '?client_id=' + urlBuilderSelf.clientID;
+      } else {
+        url = url + '?client_id=' + urlBuilderSelf.clientID;
+      }
+      if (params) {
+        for (var property in params) {
+          if (params.hasOwnProperty(property)) {
+             url = url + '&' + property + "=" + params[property];
+          }
+        }
+      }
+      return url;
+    }
+  }
+
+  var apiPresets = [
+    {
+      name: 'searchChannels',
+      getURL: function(channel) {
+        return urlBuilder.build('channels', [channel]);
+      }
+    },
+    {
+      name: 'standardEmotes',
+      getURL: function() {
+        return urlBuilder.build('chat', ['badges', 'emoticons']);
+      }
+    },
+    {
+      name: 'searchChannelEmotes',
+      getURL: function(channel) {
+        return urlBuilder.build('chat', [channel, 'emoticons']);
+      }
+    },
+    {
+      name: 'searchSingleEmote',
+      getURL: function() {
+        return urlBuilder.build('chat', ['emoticons']);
+      }
+    },
+    {
+      name: 'topGames',
+      getURL: function() {
+        return urlBuilder.build('games', ['top'], {limit: 100});
+      }
+    },
+    {
+      name: 'searchGames',
+      getURL: function(game) {
+        return urlBuilder.build('search', ['games'], {q: game, type: 'suggest'});
+      }
+    },
+    {
+      name: 'topStreams',
+      getURL: function() {
+        return urlBuilder.build('streams', false, {limit: 100});
+      }
+    },
+    {
+      name: 'searchStreamsByGame',
+      getURL: function(game) {
+        return urlBuilder.build('streams', false, {game: game});
+      }
+    },
+    {
+      name: 'searchStreamsByChannel',
+      getURL: function(channels) {
+        return urlBuilder.build('streams', false, {channel: channels});
+      }
+    },
+    {
+      name: 'searchStreamsByLanguage',
+      getURL: function(language) {
+        return urlBuilder.build('streams', false, {language: language});
+      }
+    },
+    {
+      name: 'teams',
+      getURL: function() {
+        return urlBuilder.build('teams', false, {limit: 100});
+      }
+    },
+    {
+      name: 'searchTeams',
+      getURL: function(team) {
+        return urlBuilder.build('teams', [team]);
+      }
+    },
+    {
+      name: 'topVideos',
+      getURL: function() {
+        return urlBuilder.build('videos', ['top'], {limit: 100});
+      }
+    },
+    {
+      name: 'topVideosByGame',
+      getURL: function(game) {
+        return urlBuilder.build('videos', ['top'], {game: game, limit: 100});
+      }
+    },
+    {
+      name: 'searchChannelVideos',
+      getURL: function(channel) {
+        return urlBuilder.build('channels', [channel, 'videos'], {limit: 100});
+      }
+    }
+  ];
+
+  var findApiPreset = function(presetName) {
+    return apiPresets.find(function(preset) {
+      if (preset.name === presetName) {
+        return preset;
+      }
+    });
+  }
+
+  function getTwitchJSON(presetName, optionalSearch) {
+    var preset     = findApiPreset(presetName),
+        presetURL  = preset.getURL(optionalSearch),
+        presetJSON = Library.getJSONFromURL(presetURL);
+
+    if (presetJSON.error) {
+      var dataErrorMessage = presetJSON.message.length > 0 ? presetJSON.error : presetJSON.message;
+      Library.createDocumentMessage('API Error ' + presetJSON.status + ' : ' + dataErrorMessage);
+      return;
+    }
+
+    return Library.stringify(presetJSON);
+  }
+
+})(TwitchApi);

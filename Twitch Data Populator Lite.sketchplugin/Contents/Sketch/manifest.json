@@ -1,0 +1,231 @@
+{
+  "name": "Twitch Data Populator Lite",
+  "description": "Get all that twitch stuff.",
+  "author" : "Erik Myers",
+  "identifier": "com.twitch.sketch.dpl",
+  "compatibleVersion": "4",
+  "version": "1",
+  "commands": [
+  {
+    "name": "Search Channel Logo",
+    "identifier": "searchChannelLogo",
+    "script": "plugin.cocoascript",
+    "handler": "searchChannelLogo",
+    "shortcut": ""
+  },
+  {
+    "name": "Random Channel Logo",
+    "identifier": "randomChannelLogo",
+    "script": "plugin.cocoascript",
+    "handler": "randomChannelLogo",
+    "shortcut": ""
+  },
+  {
+    "name": "Search Channel Banner",
+    "identifier": "searchChannelBanner",
+    "script": "plugin.cocoascript",
+    "handler": "searchChannelBanner",
+    "shortcut": ""
+  },
+  {
+    "name": "Random Channel Banner",
+    "identifier": "randomChannelBanner",
+    "script": "plugin.cocoascript",
+    "handler": "randomChannelBanner",
+    "shortcut": ""
+  },
+  {
+    "name": "Search Channel Sub Emotes",
+    "identifier": "searchChannelSubEmotes",
+    "script": "plugin.cocoascript",
+    "handler": "searchChannelSubEmotes",
+    "shortcut": ""
+  },
+  {
+    "name": "Search Game Box",
+    "identifier": "searchGameBox",
+    "script": "plugin.cocoascript",
+    "handler": "searchGameBox",
+    "shortcut": ""
+  },
+  {
+    "name": "Random Game Box",
+    "identifier": "randomGameBox",
+    "script": "plugin.cocoascript",
+    "handler": "randomGameBox",
+    "shortcut": ""
+  },
+  {
+    "name": "Search Stream Preview by Game",
+    "identifier": "searchStreamPreviewByGame",
+    "script": "plugin.cocoascript",
+    "handler": "searchStreamPreviewByGame",
+    "shortcut": ""
+  },
+  {
+    "name": "Search Stream Preview by Channel",
+    "identifier": "searchStreamPreviewByChannel",
+    "script": "plugin.cocoascript",
+    "handler": "searchStreamPreviewByChannel",
+    "shortcut": ""
+  },
+  {
+    "name": "Search Stream Preview by Language",
+    "identifier": "searchStreamPreviewByLanguage",
+    "script": "plugin.cocoascript",
+    "handler": "searchStreamPreviewByLanguage",
+    "shortcut": ""
+  },
+  {
+    "name": "Random Stream Preview",
+    "identifier": "randomStreamPreview",
+    "script": "plugin.cocoascript",
+    "handler": "randomStreamPreview",
+    "shortcut": ""
+  },
+  {
+    "name": "Search Team Logo",
+    "identifier": "searchTeamLogo",
+    "script": "plugin.cocoascript",
+    "handler": "searchTeamLogo",
+    "shortcut": ""
+  },
+  {
+    "name": "Search Team Banner",
+    "identifier": "searchTeamBanner",
+    "script": "plugin.cocoascript",
+    "handler": "searchTeamBanner",
+    "shortcut": ""
+  },
+  {
+    "name": "Search Team Background",
+    "identifier": "searchTeamBackground",
+    "script": "plugin.cocoascript",
+    "handler": "searchTeamBackground",
+    "shortcut": ""
+  },
+  {
+    "name": "Search Video Preview by Channel",
+    "identifier": "searchVideoPreviewByChannel",
+    "script": "plugin.cocoascript",
+    "handler": "searchVideoPreviewByChannel",
+    "shortcut": ""
+  },
+  {
+    "name": "Search Video Preview by Game",
+    "identifier": "searchVideoPreviewByGame",
+    "script": "plugin.cocoascript",
+    "handler": "searchVideoPreviewByGame",
+    "shortcut": ""
+  },
+  {
+    "name": "Random Video Preview",
+    "identifier": "randomVideoPreview",
+    "script": "plugin.cocoascript",
+    "handler": "randomVideoPreview",
+    "shortcut": ""
+  },
+  ],
+  "menu": {
+    "isRoot": false,
+    "items": [
+      {
+        "title": "Channels",
+        "items": [
+          {
+            "title": "Search",
+            "items": [
+              "searchChannelBanner",
+              "searchChannelLogo"
+            ]
+          },
+          {
+            "title": "Random",
+            "items": [
+              "randomChannelBanner",
+              "randomChannelLogo"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Emotes",
+        "items": [
+          {
+            "title": "Search",
+            "items": [
+              "searchChannelSubEmotes",
+            ]
+          },
+        ]
+      },
+      {
+        "title": "Games",
+        "items": [
+          {
+            "title": "Search",
+            "items": [
+              "searchGameBox"
+            ]
+          },
+          {
+            "title": "Random",
+            "items": [
+              "randomGameBox"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Streams",
+        "items": [
+          {
+            "title": "Search",
+            "items": [
+              "searchStreamPreviewByChannel",
+              "searchStreamPreviewByGame",
+              "searchStreamPreviewByLanguage"
+            ]
+          },
+          {
+            "title": "Random",
+            "items": [
+              "randomStreamPreview"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Teams",
+        "items": [
+          {
+            "title": "Search",
+            "items": [
+              "searchTeamBackground",
+              "searchTeamBanner",
+              "searchTeamLogo"
+            ]
+          }
+        ]
+      },
+      {
+        "title": "Videos",
+        "items": [
+          {
+            "title": "Search",
+            "items": [
+              "searchVideoPreviewByChannel",
+              "searchVideoPreviewByGame"
+            ]
+          },
+          {
+            "title": "Random",
+            "items": [
+              "randomVideoPreview",
+            ]
+          }
+        ]
+      },
+    ]
+  }
+}

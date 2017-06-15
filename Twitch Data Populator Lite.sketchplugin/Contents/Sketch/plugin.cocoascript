@@ -1,0 +1,413 @@
+@import 'library.cocoascript';
+@import 'twitch-api.cocoascript';
+@import 'service.cocoascript';
+
+var context;
+var selection;
+
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+// CHANNELS
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+
+function searchChannelLogo(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  var alert = Library.createSearchAlert("Search Channel Logo", "Search by channel name", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'searchChannels', apiPresetSearch: alert}, {imgCategoryName: 'searchChannelLogo', shuffleResults: false});
+}
+
+function searchChannelBanner(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  var alert = Library.createSearchAlert("Search Channel Banner", "Search by channel name", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'searchChannels', apiPresetSearch: alert}, {imgCategoryName: 'searchChannelBanner', shuffleResults: false});
+}
+
+function randomChannelLogo(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  Library.generate(selectedLayers, {apiPresetName: 'topStreams', apiPresetSearch: null}, {imgCategoryName: 'randomChannelLogo', shuffleResults: true});
+}
+
+function randomChannelBanner(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  Library.generate(selectedLayers, {apiPresetName: 'topStreams', apiPresetSearch: null}, {imgCategoryName: 'randomChannelBanner', shuffleResults: true});
+}
+
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+// EMOTES
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+
+function searchChannelSubEmotes(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  var alert = Library.createSearchAlert("Search Channel Sub Emotes", "Search by channel name", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'searchChannelEmotes', apiPresetSearch: alert}, {imgCategoryName: 'searchChannelEmotes', shuffleResults: false});
+}
+
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+// GAMES
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+
+function searchGameBox(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+
+  var alert = Library.createSearchAlert("Search Game Box", "Search by game name", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'searchGames', apiPresetSearch: alert}, {imgCategoryName: 'searchGameBox', shuffleResults: false});
+}
+
+function randomGameBox(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  Library.generate(selectedLayers, {apiPresetName: 'topGames', apiPresetSearch: false}, {imgCategoryName: 'randomGameBox', shuffleResults: true});
+}
+
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+// STREAMS
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+
+function searchStreamPreviewByGame(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  var alert = Library.createSearchAlert("Search Stream Previews by Game", "Search by game name", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'searchStreamsByGame', apiPresetSearch: alert}, {imgCategoryName: 'searchStreamPreviewByGame', shuffleResults: false});
+}
+
+function searchStreamPreviewByChannel(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  var alert = Library.createSearchAlert("Search Stream Previews by Channel", "Search by channel names (e.g. 'lirik,summit1g')", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'searchStreamsByChannel', apiPresetSearch: alert}, {imgCategoryName: 'searchStreamPreviewByChannel', shuffleResults: false});
+}
+
+function searchStreamPreviewByLanguage(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  var alert = Library.createSearchAlert("Search Stream Previews by Language", "Search by language ID (e.g. 'en', 'fi')", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'searchStreamsByLanguage', apiPresetSearch: alert}, {imgCategoryName: 'searchStreamPreviewByLanguage', shuffleResults: false});
+}
+
+function randomStreamPreview(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  Library.generate(selectedLayers, {apiPresetName: 'topStreams', apiPresetSearch: null}, {imgCategoryName: 'randomStreamPreview', shuffleResults: true});
+}
+
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+// TEAMS
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+
+function searchTeamLogo(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  var alert = Library.createSearchAlert("Search Team Logo", "Search by team name", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'searchTeams', apiPresetSearch: alert}, {imgCategoryName: 'searchTeamLogo', shuffleResults: false});
+}
+
+function searchTeamBanner(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  var alert = Library.createSearchAlert("Search Team Banner", "Search by team name", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'searchTeams', apiPresetSearch: alert}, {imgCategoryName: 'searchTeamBanner', shuffleResults: false});
+}
+
+function searchTeamBackground(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  var alert = Library.createSearchAlert("Search Team Background", "Search by team name", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'searchTeams', apiPresetSearch: alert}, {imgCategoryName: 'searchTeamBackground', shuffleResults: false});
+}
+
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+// VIDEOS
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+
+function searchVideoPreviewByChannel(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  var alert = Library.createSearchAlert("Search Video Previews by Channel", "Search by channel name", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'searchChannelVideos', apiPresetSearch: alert}, {imgCategoryName: 'searchVideoPreviewByChannel', shuffleResults: false});
+}
+
+function searchVideoPreviewByGame(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  var alert = Library.createSearchAlert("Search Top Videos by Game", "Search by game name", "assets/icon.png");
+  Library.generate(selectedLayers, {apiPresetName: 'topVideosByGame', apiPresetSearch: alert}, {imgCategoryName: 'searchVideoPreviewByGame', shuffleResults: false});
+}
+
+function randomVideoPreview(_context) {
+  context = _context;
+  var selectedLayers = Library.getSelectedLayers();
+  selection = selectedLayers;
+  if(!selectedLayers.length) {
+    Library.createDocumentMessage('Please select the layers you would like to populate.');
+    return;
+  }
+  Library.generate(selectedLayers, {apiPresetName: 'topVideos', apiPresetSearch: null}, {imgCategoryName: 'randomVideoPreview', shuffleResults: true});
+}
+
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+// POPULATE
+// ==============================================
+// ++++++++++++++++++++++++++++++++++++++++++++++
+// ==============================================
+
+function populate(data, selectedLayers) {
+  var layerCounter = 0;
+  var imgCounter = 0;
+
+  while(selectedLayers[layerCounter]){
+    var selectedLayer = selectedLayers[layerCounter];
+    var selectedImage = Library.getImageFromURL(data[imgCounter]);
+
+    processLayer(selectedLayer, selectedImage);
+
+    imgCounter++;
+    layerCounter++;
+
+    if (imgCounter > data.length - 1) {
+      imgCounter = 0;
+    }
+  }
+
+  function processLayer(selectedLayer, selectedImage) {
+    if(Library.isLayerGroup(selectedLayer)) {
+      //find image placeholders
+      var imagePlaceholders = Library.findLayersInLayer('*', false, 'MSShapeGroup', selectedLayer, false, false);
+
+      //find symbols
+      var symbolInstances = Library.findLayersInLayer('*', false, 'MSSymbolInstance', selectedLayer, false, false);
+
+      //process all symbol instances
+      symbolInstances.forEach(function(symbolInstance) {
+        processSymbolInstance(symbolInstance, selectedImage);
+      });
+
+      //process all image placeholders
+      imagePlaceholders.forEach(function(shapeGroup) {
+        processImageFill(shapeGroup, selectedImage);
+      });
+    }
+    else if(Library.isLayerShapeGroup(selectedLayer)) {
+      processImageFill(selectedLayer, selectedImage);
+    }
+    else if(Library.isSymbolInstance(selectedLayer)) {
+      processSymbolInstance(selectedLayer, selectedImage);
+    }
+  }
+
+  function getImageData(image) {
+    //make sure that image was loaded successfully
+    if(!image) {
+      context.document.showMessage('Some images could not be downloaded. Please check the URLs.');
+      return;
+    }
+    var imageData = [[MSImageData alloc] initWithImage: image convertColorSpace: false]];
+    return imageData;
+  }
+
+  function processImageFill(shapeGroup, image) {
+
+    //get image data
+    var imageData = getImageData(image);
+
+    //get shape group fill
+    var fill = [[[shapeGroup style] fills] firstObject];
+
+    //set fill
+    if(imageData) {
+
+      //enable fill
+      fill.setIsEnabled(true);
+
+      //set pattern fill
+      fill.setFillType(4);
+      [fill setImage: imageData];
+      fill.setPatternFillType(1);
+    }
+    else {
+
+      //disable fill
+      fill.setIsEnabled(false);
+    }
+  }
+
+  function processSymbolImageFill(shapeGroup, image, overrides) {
+
+    //get image data
+    var imageData = getImageData(image);
+
+    //get shape group fill
+    var fill = [[[shapeGroup style] fills] firstObject];
+
+    //set pattern fill for shape group in case it isn't already
+    fill.setFillType(4);
+    fill.setPatternFillType(1);
+
+    //get id of text layer
+    var layerId = shapeGroup.objectID();
+
+    //add override for layer
+    if(imageData) {
+      overrides.setValue_forKey(imageData, layerId);
+    }
+    else {
+      overrides.setValue_forKey(null, layerId);
+    }
+  }
+
+  function overridesForSymbolInstance(symbolInstance, image) {
+
+    //get existing overrides
+    var existingOverrides = symbolInstance.overrides();
+    if(existingOverrides) {
+      existingOverrides = symbolInstance.overrides().objectForKey(NSNumber.numberWithInt(0));
+    } else {
+      existingOverrides = NSDictionary.alloc().init();
+    }
+
+    //create mutable overrides
+    var overrides = NSMutableDictionary.dictionaryWithDictionary(existingOverrides);
+
+    //get symbol master
+    var symbolMaster = symbolInstance.symbolMaster();
+
+    //get all image placeholders
+    var imagePlaceholders = Library.findLayersInLayer('*', false, 'MSBitmapLayer', symbolMaster, false, false);
+    imagePlaceholders = imagePlaceholders.concat(Library.findLayersInLayer('*', false, 'MSShapeGroup', symbolMaster, false, false));
+
+    //process all image placeholders
+    imagePlaceholders.forEach(function(shapeGroup) {
+      processSymbolImageFill(shapeGroup, image, overrides);
+    });
+
+    //find nested symbols
+    var symbolInstances = Library.findLayersInLayer('*', false, 'MSSymbolInstance', symbolMaster, false, false);
+
+    //process all symbol instances
+    symbolInstances.forEach(function(nestedSymbolInstance) {
+      var nestedOverrides = overridesForSymbolInstance(nestedSymbolInstance, image);
+      overrides.setValue_forKey(nestedOverrides, nestedSymbolInstance.objectID());
+    });
+
+    return overrides;
+  }
+
+  function processSymbolInstance(symbolInstance, image) {
+
+    //get overrides for symbol, including any nesteed symbols
+    var overrides = overridesForSymbolInstance(symbolInstance, image);
+
+    //set new overrides
+    symbolInstance.setOverrides(NSDictionary.dictionaryWithObject_forKey(overrides, NSNumber.numberWithInt(0)));
+  }
+}

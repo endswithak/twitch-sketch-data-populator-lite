@@ -1,0 +1,195 @@
+//===============================================
+// twinge sketch data populator - service
+//===============================================
+
+var Service = {};
+(function(self) {
+
+  self.pullImagesFromJSON = pullImagesFromJSON;
+
+  var imageCategories = [
+    {
+      name: 'searchChannelLogo',
+      images: function(json) {
+        return [json.logo];
+      }
+    },
+    {
+      name: 'searchChannelBanner',
+      images: function(json) {
+        return [json.profile_banner];
+      }
+    },
+    {
+      name: 'randomChannelLogo',
+      images: function(json) {
+        return json.streams.map(function(item){
+          return item.channel.logo
+        });
+      }
+    },
+    {
+      name: 'randomChannelBanner',
+      images: function(json) {
+        return json.streams.map(function(item){
+          return item.channel.profile_banner;
+        });
+      }
+    },
+    {
+      name: 'searchChannelEmotes',
+      images: function(json) {
+        return json.emoticons.map(function(item){
+          if (item.subscriber_only) {
+            return item.url;
+          }
+        });
+      }
+    },
+    {
+      name: 'searchGameBox',
+      images: function(json) {
+        return json.games.map(function(item){
+          return item.box.medium;
+        });
+      }
+    },
+    {
+      name: 'randomGameBox',
+      images: function(json) {
+        return json.top.map(function(item){
+          return item.game.box.medium;
+        });
+      }
+    },
+    {
+      name: 'searchStreamPreviewByGame',
+      images: function(json) {
+        return json.streams.map(function(item){
+          return item.preview.medium;
+        });
+      }
+    },
+    {
+      name: 'searchStreamPreviewByChannel',
+      images: function(json) {
+        return json.streams.map(function(item){
+          return item.preview.medium;
+        });
+      }
+    },
+    {
+      name: 'searchStreamPreviewByLanguage',
+      images: function(json) {
+        return json.streams.map(function(item){
+          return item.preview.medium;
+        });
+      }
+    },
+    {
+      name: 'randomStreamPreview',
+      images: function(json) {
+        return json.streams.map(function(item){
+          return item.preview.medium;
+        });
+      }
+    },
+    {
+      name: 'searchTeamLogo',
+      images: function(json) {
+        return [json.logo];
+      }
+    },
+    {
+      name: 'searchTeamBanner',
+      images: function(json) {
+        return [json.banner];
+      }
+    },
+    {
+      name: 'searchTeamBackground',
+      images: function(json) {
+        return [json.background];
+      }
+    },
+    {
+      name: 'searchVideoPreviewByChannel',
+      images: function(json) {
+        return json.videos.map(function(item){
+          return item.preview
+        });
+      }
+    },
+    {
+      name: 'searchVideoPreviewByGame',
+      images: function(json) {
+        return json.videos.map(function(item){
+          return item.preview
+        });
+      }
+    },
+    {
+      name: 'randomVideoPreview',
+      images: function(json) {
+        return json.videos.map(function(item){
+          return item.preview
+        });
+      }
+    },
+  ];
+
+  var findImageCategory = function(categoryName) {
+    return imageCategories.find(function(category) {
+      if (category.name === categoryName) {
+        return category;
+      }
+    });
+  }
+
+  var removeNullValues = function(images) {
+    return images.filter(function(image){
+      if (image !== null) {
+        return image;
+      }
+    });
+  }
+
+  var shuffle = function(array) {
+    var i = array.length,
+        j = 0,
+        temp;
+
+    while (i--) {
+      j = Math.floor(Math.random() * (i + 1));
+
+      temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+
+    return array;
+  }
+
+  function pullImagesFromJSON(json, imgParams) {
+    var data = JSON.parse(json),
+        category = findImageCategory(imgParams.imgCategoryName);
+
+    if (category === undefined) {
+      Library.createDocumentMessage('Unknown category, sucks to suck!');
+    }
+
+    var categoryImages = category.images(data),
+        filteredImages = removeNullValues(categoryImages);
+
+    if (filteredImages.length === 0) {
+      Library.createDocumentMessage('No images available, sorry!');
+    }
+
+    if (imgParams.shuffleResults) {
+      return shuffle(filteredImages);
+    }
+
+    return filteredImages;
+  }
+
+})(Service);
